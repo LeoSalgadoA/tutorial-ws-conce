@@ -22,26 +22,22 @@ contract("token_management", async accounts => {
   });
 
   it("should add new ELT token", async () => {
-    console.log("");
     let address = await sender.tokens.call("ELT");
     address.should.equal(etherlabAddress);
   });
 
   it("should add new CWT token", async () => {
-    console.log("");
     let address = await sender.tokens.call("CWT");
     address.should.equal(casawAddress);
   });
 
   it("should update supported token address", async () => {
-    console.log("");
     await sender.addNewToken("ELT", casawAddress);
     let address = await sender.tokens.call("ELT");
     address.should.equal(casawAddress);
   });
 
   it("should remove unused supported token address ELT has CWT address we need to remove it", async () => {
-    console.log("");
     await sender.removeToken("ELT");
     let address = await sender.tokens.call("ELT");
     address.should.equal("0x0000000000000000000000000000000000000000");
